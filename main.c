@@ -12,8 +12,11 @@ int main() {
         "Who is the current Head of Xbox?", 
         "Who is the President of Microsoft?",
         "What year was Xbox released?",
-        "Where is the Headquarters of Microsoft located?"
+        "Where is the Headquarters of Microsoft located?",
+        "How many Champions league titles has Liverpool won"
         };
+
+    int numberofquestions = sizeof(questions)/ sizeof(questions[0]);
 
     const char options[][100][20] = {
         {"A. 1975", "B. 1981", "C. 1978", "D. 1976"},
@@ -21,9 +24,10 @@ int main() {
         {"A. Matt Booty", "B. Panos Panay", "C. Satya Nadella", "D. Brad Smith"},
         {"A. 2001", "B. 2002", "C. 1999", "D. 2000"},
         {"A. Washington", "B. California", "C. Texas", "D. Chicago"},
+        {"A. 4", "B. 5", "C. 6", "D. 7"}
     };
 
-    char answers[5] = {'A', 'C', 'D', 'A', 'A'};
+    char answers[] = {'A', 'C', 'D', 'A', 'A', 'C'};
 
     int numberOfQuestions = sizeof(questions) / sizeof(questions[0]);
 
@@ -36,24 +40,26 @@ int main() {
         for(int j = 0; j < 4; j++) {
             printf("%s\n", options[i][j]);
         }
-        puts("Enter answer: ");
-        scanf("%c", &answer);
-        scanf("%c");
+        printf("\nEnter answer: ");
+
+        // read the next char which is \n but don't assign it to pointer
+        scanf("%c%*c", &answer);
 
         printf("-----------------------------------------------------\n");
 
 
-        // guess = toupper(guess);
-        printf("%c", answer);
+        answer = toupper(answer);
         
-        // if(guess == answers[i]) {
-        //     printf("CORRECT\n");
-        //     score++;
-        // } else {
-        // printf("WRONG ANSWER\n");
-        // }
+        if(answer == answers[i]) {
+            printf("CORRECT\n");
+            score++;
+        } else {
+        printf("WRONG ANSWER\n");
+        }
    
     }
-
+    puts("\n*******************************************");
+    printf("You scored %d/%d", score, numberofquestions);
+    puts("\n*******************************************");
     return 0;
 }
